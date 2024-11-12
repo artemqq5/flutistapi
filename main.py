@@ -70,7 +70,7 @@ def activate():
     return repository.register_auth(data['uuid'], data['android_id'])
 
 
-if __name__ == '__main__':
-    app.run(threaded=True)
-    http_server = WSGIServer(("0.0.0.0", 5000), app)
-    http_server.serve_forever()
+# if __name__ == '__main__':
+#     app.run(threaded=True)
+#     http_server = WSGIServer(("0.0.0.0", 5000), app)
+#     http_server.serve_forever()
