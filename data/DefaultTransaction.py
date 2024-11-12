@@ -31,11 +31,11 @@ class DefaultTransaction(DefaultRepository):
                     item['created'] = item['created'].isoformat()  # Перетворюємо дату у ISO-формат
 
             # Повертаємо результат
-            return jsonify({"result": True, "news": news_response}, 200)
+            return jsonify({"result": True, "news": news_response}), 200
 
         except Exception as e:
             logger.error(f"Transaction failed: {e}")
-            return jsonify({"result": False, "error": str(e), "news": []}, 400)
+            return jsonify({"result": False, "error": str(e), "news": []}), 400
         finally:
             self._close()
 
@@ -56,11 +56,11 @@ class DefaultTransaction(DefaultRepository):
 
             self._commit()
 
-            return jsonify({"result": True, "Token": new_token}, 200)
+            return jsonify({"result": True, "Token": new_token}), 200
 
         except Exception as e:
             logger.error(f"Transaction failed: {e}")
-            return jsonify({"result": False, "error": str(e)}, 400)
+            return jsonify({"result": False, "error": str(e)}), 400
         finally:
             self._close()
 
@@ -78,11 +78,11 @@ class DefaultTransaction(DefaultRepository):
 
             self._commit()
 
-            return jsonify({"result": True, "message": "post success"}, 200)
+            return jsonify({"result": True, "message": "post success"}), 200
 
         except Exception as e:
             logger.error(f"Transaction failed: {e}")
-            return jsonify({"result": False, "error": str(e)}, 400)
+            return jsonify({"result": False, "error": str(e)}), 400
         finally:
             self._close()
 
@@ -100,10 +100,10 @@ class DefaultTransaction(DefaultRepository):
 
             self._commit()
 
-            return jsonify({"result": True, "message": "delete success"}, 200)
+            return jsonify({"result": True, "message": "delete success"}), 200
 
         except Exception as e:
             logger.error(f"Transaction failed: {e}")
-            return jsonify({"result": False, "error": str(e)}, 400)
+            return jsonify({"result": False, "error": str(e)}), 400
         finally:
             self._close()
