@@ -23,10 +23,10 @@ def auth():
 
     auth_header = request.headers.get("Authorization")
     if not auth_header:
-        return jsonify({"result": False, "error": "Authorization header is missing"}), 401
+        return "Authorization header is missing", 401
 
     if not AuthService.verify_jwt(auth_header):
-        return jsonify({"result": False, "error": "Authorization Token is not correct"}), 401
+        return "Authorization Token is not correct", 401
 
 
 @app.route("/api/news", methods=["GET"])
@@ -43,7 +43,7 @@ def post():
     data = request.get_json()
 
     if not data.get("title", None) or not data.get("desc", None) or not data.get("img_data", None):
-        return jsonify({"result": False, "error": "Lose some params of (`title`, `desc` or `img_data`)"}), 400
+        return "Lose some params of (`title`, `desc` or `img_data`)", 400
 
     return repository.post(data['title'], data['desc'], data['img_data'])
 
@@ -54,7 +54,7 @@ def delete():
     data = request.get_json()
 
     if not data.get("identify", None):
-        return jsonify({"result": False, "error": "Lose param (`identify`)"}), 400
+        return "Lose param (`identify`)", 400
 
     return repository.remove(data['identify'])
 
@@ -65,7 +65,7 @@ def activate():
     data = request.get_json()
 
     if not data.get('uuid', None) or not data.get('android_id', None):
-        return jsonify({"result": False, "error": "Lose some params of (`uuid` or `android_id`)"}), 400
+        return "Lose some params of (`uuid` or `android_id`)", 400
 
     return repository.register_auth(data['uuid'], data['android_id'])
 

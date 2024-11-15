@@ -35,7 +35,7 @@ class DefaultTransaction(DefaultRepository):
 
         except Exception as e:
             logger.error(f"Transaction failed: {e}")
-            return jsonify({"result": False, "error": str(e), "news": []}), 400
+            return str(e), 400
         finally:
             self._close()
 
@@ -60,7 +60,7 @@ class DefaultTransaction(DefaultRepository):
 
         except Exception as e:
             logger.error(f"Transaction failed: {e}")
-            return jsonify({"result": False, "error": str(e)}), 400
+            return str(e), 400
         finally:
             self._close()
 
@@ -82,7 +82,7 @@ class DefaultTransaction(DefaultRepository):
 
         except Exception as e:
             logger.error(f"Transaction failed: {e}")
-            return jsonify({"result": False, "error": str(e)}), 400
+            return str(e), 400
         finally:
             self._close()
 
@@ -104,6 +104,6 @@ class DefaultTransaction(DefaultRepository):
 
         except Exception as e:
             logger.error(f"Transaction failed: {e}")
-            return jsonify({"result": False, "error": str(e)}), 400
+            return str(e), 400
         finally:
             self._close()
