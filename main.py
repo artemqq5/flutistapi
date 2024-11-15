@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
-from flask_limiter.util import get_remote_address
-from gevent.pywsgi import WSGIServer
 from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 from AuthService import AuthService
 from data.DefaultTransaction import DefaultTransaction
@@ -14,6 +13,11 @@ limiter = Limiter(
     get_remote_address,  # Визначає клієнта за IP
     app=app,
 )
+
+
+@app.errorhandler(429)
+def ratelimit_error():
+    return "Too many requests for 1 minute. Please try again later.", 429
 
 
 @app.before_request
@@ -68,7 +72,6 @@ def activate():
         return "Lose some params of (`uuid` or `android_id`)", 400
 
     return repository.register_auth(data['uuid'], data['android_id'])
-
 
 # if __name__ == '__main__':
 #     app.run(threaded=True)
