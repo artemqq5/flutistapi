@@ -17,7 +17,7 @@ limiter = Limiter(
 
 @app.errorhandler(429)
 def ratelimit_error(e):
-    return "Too many requests for 1 minute. Please try again later.", 429
+    return "Too many requests for 1 minute. Please try again later", 429
 
 
 @app.before_request
