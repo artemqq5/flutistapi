@@ -4,7 +4,7 @@ from data.DefaultDataBase import DefaultDataBase
 class DefaultRepository(DefaultDataBase):
 
     def _news(self, offset):
-        query = "SELECT * FROM `news` ORDER BY `created` ASC LIMIT 5 OFFSET %s;"
+        query = "SELECT * FROM `news` ORDER BY `created` DESC LIMIT 5 OFFSET %s;"
         return self._select(query, (offset, ))
 
     def _post(self, title, desc, img_data):
