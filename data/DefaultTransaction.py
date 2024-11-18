@@ -64,7 +64,7 @@ class DefaultTransaction(DefaultRepository):
         finally:
             self._close()
 
-    def post(self, title, desc, img_data):
+    def post(self, title, desc, img_url):
         """
         Додає новину до бази
         """
@@ -73,7 +73,7 @@ class DefaultTransaction(DefaultRepository):
             self._ensure_connection()
             self._connection.begin()
 
-            if not self._post(title, desc, img_data):
+            if not self._post(title, desc, img_url):
                 raise Exception("Error: database can`t add this")
 
             self._commit()

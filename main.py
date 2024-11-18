@@ -46,10 +46,10 @@ def news():
 def post():
     data = request.get_json()
 
-    if not data.get("title", None) or not data.get("desc", None) or not data.get("img_data", None):
-        return "Lose some params of (`title`, `desc` or `img_data`)", 400
+    if not data.get("title", None) or not data.get("desc", None) or not data.get("img_url", None):
+        return "Lose some params of (`title`, `desc` or `img_url`)", 400
 
-    return repository.post(data['title'], data['desc'], data['img_data'])
+    return repository.post(data['title'], data['desc'], data['img_url'])
 
 
 @app.route("/api/delete", methods=["DELETE"])

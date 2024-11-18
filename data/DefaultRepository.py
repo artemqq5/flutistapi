@@ -8,7 +8,7 @@ class DefaultRepository(DefaultDataBase):
         return self._select(query, (offset, ))
 
     def _post(self, title, desc, img_data):
-        query = "INSERT INTO `news` (`title`, `desc`, `img_data`) VALUES (%s, %s, %s);"
+        query = "INSERT INTO `news` (`title`, `desc`, `img_url`) VALUES (%s, %s, %s);"
         return self._insert(query, (title, desc, img_data))
 
     def _remove(self, identify):
