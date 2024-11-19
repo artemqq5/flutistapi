@@ -55,12 +55,12 @@ def post():
 @app.route("/api/delete", methods=["DELETE"])
 @limiter.limit("1 per minute")
 def delete():
-    data = request.get_json()
+    identify = request.args.get('identify', None)
 
-    if not data.get("identify", None):
+    if not identify:
         return "Lose param (`identify`)", 400
 
-    return repository.remove(data['identify'])
+    return repository.remove(identify)
 
 
 @app.route("/api/activate", methods=["POST"])
