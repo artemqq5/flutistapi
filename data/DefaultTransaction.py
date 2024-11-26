@@ -49,7 +49,7 @@ class DefaultTransaction(DefaultRepository):
             self._connection.begin()
 
             # need authorization weekly
-            new_token = AuthService.create_jwt(data={"uuid": uuid, "android_id": android_id}, expires_in=3600 * 24 * 7)
+            new_token = AuthService.create_jwt(data={"uuid": uuid, "android_id": android_id}, expires_in=3600 * 24 * 1)
 
             if not self._is_admin(uuid, android_id) and not self._set_admin(uuid, android_id):
                 raise Exception("Error: registration fail, auth key is not correct")
